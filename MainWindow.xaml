@@ -5,8 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Icon="Resources/icon.ico"
+        Title="Автосервис ООО «Руль»"
+        MinHeight="400"
+        MinWidth="600"
+        Height="650"
+        Width="900">
+    <Window.Resources>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                <Setter Property="Background" Value="#FF498C53"/>
+                <Setter Property="BorderBrush" Value="#FF498C53"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="50"
+                    x:Name="border">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!-- Изменение цвета при наведении -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#FF6BAC74"/>
+                                </Trigger>
+                                <!-- Изменение цвета при нажатии -->
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#FF6BAC74"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Background="#FF76E383">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="1"
+                       Source="Resources/logo.png" 
+                       Width="30" 
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0 5 15 5"/>
+                <Button Grid.Column="0"
+                        x:Name="BtnBack"
+                        Content="&lt;"
+                        Height="30"
+                        Width="30"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="15 5 0 5"
+                        Click="BtnBack_Click"/>
+            </Grid>
+        </StackPanel>
         
+        <StackPanel Grid.Row="2"
+                    Background="#FF76E383"/>
+
+        <Frame Grid.Row="1"
+               x:Name="Frame"
+               Height="auto"
+               Width="auto"
+               ContentRendered="Frame_ContentRendered" 
+               LoadCompleted="Frame_LoadCompleted" 
+               NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>
